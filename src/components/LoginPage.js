@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import './App.css';
-import { Button, TextField, Box } from '@mui/material';
+import '../App.css';
+import { Button, TextField, Container } from '@mui/material';
 import cookie from 'cookie';
 
 
@@ -27,7 +27,7 @@ const LoginPage = () => {
       const login = (e) => {
         e.preventDefault();
         document.cookie = cookie.serialize("loggedIn", "true", {maxAge: 60});
-        navigate("/AdminView");
+        navigate("/Listings");
       };
 
 return (

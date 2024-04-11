@@ -1,6 +1,11 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router';
 import cookie from 'cookie';
+// import { Listings, AdminView, LoginPage, Details, AddBiz } from './components';
+import Listings from './components/Listings';
+import LoginPage from './components/LoginPage';
+// import Details from './components/Details';
+import AddBiz from './components/AddBiz';
 
 const checkAuth = () => {
     const cookies = cookie.parse(document.cookie);
@@ -19,9 +24,8 @@ const Router = () => {
     return (
         <Routes>
             <Route path="/Listings" element={<Listings/>} />
-            <Route path="/AdminView" element={<ProtectedRoute component={ AdminView }/>} />
             <Route path="/LoginPage" element={<LoginPage/>} />
-            <Route path="/Details/:id" element={<Details/>} />
+            {/* <Route path="/Details/:id" element={<Details/>} /> */}
             <Route path="/AddBiz" element={<ProtectedRoute component={ AddBiz }/>} />
         </Routes>
     );
