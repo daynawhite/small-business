@@ -32,7 +32,8 @@
 // export default Biz;
 
 
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom'
 import {
     Container,
     Table,
@@ -40,8 +41,8 @@ import {
     TableCell,
     TableHead,
     TableRow
-} from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete'
+} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import businesses from "../businesses.json";
 import cookie from 'cookie';
 
@@ -50,11 +51,12 @@ const Listings = (props) => {
     const cookies = cookie.parse(document.cookie)
    
     return (
-        <Container  maxWidth="lg" className="car-container">
+        
+        <Container  
+        // sx={{pt: }}
+         maxWidth="lg" className="biz-container">
             {/* <h4>Welcome, {props.user.username}</h4> */}
-            
-            {/* <AddCar carTotal={props.businesses.length} /> */}
-         
+                     
             <Table>
                 <TableHead>
                     <TableRow>
@@ -67,14 +69,14 @@ const Listings = (props) => {
                 <TableBody>
                 {businesses.map((biz, idx) => (
                     <TableRow key={biz.id}>
-                        <TableCell>{biz["Name"]}</TableCell>
+                        <TableCell Link="Details">{biz["Name"]}</TableCell>
                         <TableCell>{biz["Description"]}</TableCell>
                         <TableCell>{biz["Address"]}</TableCell>
                         <TableCell>{biz["Hours"]}</TableCell>
                         {cookies.loggedIn ? 
                          <TableCell>
                             <DeleteIcon
-                                // onClick={() => props.removeCar(idx)}
+                                // onClick={() => props.removebiz(idx)}
                                 className="icon text-red" />
                         </TableCell>
                         : null }
@@ -83,6 +85,7 @@ const Listings = (props) => {
                 </TableBody>
             </Table>
         </Container>
+      
     )
 }
 

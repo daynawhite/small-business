@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  /* height: 100%; */
+  margin-top: 10%;
 }
 
 .login-form {
@@ -51,10 +53,15 @@ ul {
   cursor: pointer;
 }
 
-.car-container {
-  margin: 50px;
+.biz-container {
+  margin: 10%;
 }
 
-.car-paper {
+.biz-paper {
   padding: 50px;
+}
+
+.add-biz-form {
+  display: flex;
+  flex-direction: column;
 }

@@ -1,137 +1,79 @@
 
+import React from 'react'
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import businesses from "../businesses.json";
+// import { useNavigate } from "react-router-dom";
+import { Box, Button, TextField, Container } from '@mui/material';
 import '../App.css';
-import { Button, TextField, 
-    // Container, Box, Input, Dialog, 
-    DialogContent, DialogTitle } from '@mui/material';
-import cookie from 'cookie';
-import React, { Component, Fragment } from 'react'
+// import cookie from 'cookie';
 
 
+const AddBiz = (props) => {
 
-// const AddBiz = () => {
-
-// //       const handleTextChange = (e) => {
-// //         const { name, value } = e.target;
-// //         setState((prevState) => {
-// //           return {
-// //             ...prevState,
-// //             [name]: value,
-// //           };
-// //         });
-// //       };
-    
-
-
-// return (
-//   <div className="App">
-//     <Container maxWidth="sm">
-//       <form className="login-form" 
-//     //   onSubmit={login}
-//       >
-//         <TextField
-//           required
-//         //   onChange={handleTextChange}
-//         //   value={state.username}
-//         //   name="username"
-//         //   label="Username"
-//         //   type="text"
-//         />
-//         <TextField
-//           required
-//         //   onChange={handleTextChange}
-//         //   value={state.password}
-//         //   name="password"
-//         //   label="Password"
-//         //   type="password"
-//         />
-//         <Button
-//           type="submit"
-//           className="login-button"
-//           variant="contained"
-//           color="primary"
-//         >
-//           Save
-//         </Button>
-//       </form>
-//     </Container>
-//   </div>
-// )
-// }
-
-// export default AddBiz;
-
-
-// const ariaLabel = { 'aria-label': 'description' };
-
-let state = {
+const [state, setState] = useState({
     Name: '',
     Description: '',
     Hours: '',
     Address: '',
-}
+})
+
+const handleTextChange = (e) => {
+    const { name, value } = e.target;
+    setState((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
+  };
+
 
 const handleSubmit = (e) => {
     e.preventDefault()
-    // const payload = { ...state }
-    // payload.id = businesses.length + 1
-
-    // props.addCar(payload)
+    const payload = { ...state }
+    payload.id = businesses.length + 1
+    props.addBiz(payload)
+    setState({
+        Name: '',
+        Description: '',
+        Hours: '',
+        Address: '',
+    })
 }
+console.log(props)
 
-const AddBiz = () => {
   return (
-    <Fragment>
-    {/* <div style={{ textAlign: 'center' }}>
-        <h1>Add Business:</h1>
-        <Button
-            variant="contained"
-            className="add-car"
-            // onClick={this.toggleDialog}
+    <Container  
+     maxWidth="lg" className="biz-container">
+        <Box className="add-biz-form"
+          component="form"
+          sx={{
+            '& > :not(style)': { m: 1, width: '25ch' },
+          }}
+          noValidate
+          autoComplete="off"
         >
-            Add Car
-        </Button>
-    </div> */}
-    <div>
-        {/* <Dialog open={this.state.open} onClose={this.toggleDialog} > */}
-            <DialogTitle>Add Business</DialogTitle>
-            <DialogContent>
-                <form 
-                    // onSubmit={this.handleSubmit}
-                    style={{ display: 'flex', flexDirection: 'column', width: '350px' }}>
-                    <TextField 
-                        id="Name" 
-                        placeholder="Name" 
-                        // value={this.state.name} 
-                        // onChange={handleTextChange} 
-                        required />
-                    <TextField 
-                        id="Description" 
-                        placeholder="Description" 
-                        // value={this.state.mpg} 
-                        // onChange={this.handleTextChange} 
-                        required />
-                    <TextField 
-                        id="Hours" 
-                        placeholder="Hours" 
-                        // value={this.state.cylinders} 
-                        // onChange={this.handleTextChange} 
-                        required />
-                    <TextField 
-                        id="Address" 
-                        placeholder="Address" 
-                        // value={this.state.horsepower} 
-                        // onChange={this.handleTextChange} 
-                        required />
-                    <br />
-                    <Button variant="contained" color="primary" type="submit">Save</Button>
-                </form>
-            </DialogContent>
-        {/* </Dialog> */}
-    </div>
-    </Fragment>
-  );
+          <TextField 
+          id="standard-basic"
+          variant="standard" 
+          placeholder="Name" 
+          name="Name"
+          value={state.Name} 
+          onChange={handleTextChange}/>
+          <TextField 
+          id="standard-basic" 
+          variant="standard" 
+          placeholder="Description" 
+          name="Description"
+          value={state.Description} 
+          onChange={handleTextChange} />
+          <TextField id="standard-basic" variant="standard" placeholder="Hours" name="Hours" value={state.Hours} onChange={handleTextChange} />
+          <TextField id="standard-basic" variant="standard" placeholder="Address" name="Address" value={state.Address} onChange={handleTextChange}/>
+          <Button variant="contained" onClick={handleSubmit} >Save</Button>
+
+        </Box>
+        </Container>
+      );
 };
 
 export default AddBiz
