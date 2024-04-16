@@ -1,11 +1,9 @@
 
 import React from 'react'
 import { useState } from 'react';
-import businesses from "../businesses.json";
-// import { useNavigate } from "react-router-dom";
+// import businesses from "../businesses.json";
 import { Box, Button, TextField, Container } from '@mui/material';
 import '../App.css';
-// import cookie from 'cookie';
 
 
 const AddBiz = (props) => {
@@ -25,13 +23,14 @@ const handleTextChange = (e) => {
         [name]: value,
       };
     });
+
   };
 
 
 const handleSubmit = (e) => {
     e.preventDefault()
     const payload = { ...state }
-    payload.id = businesses.length + 1
+    payload.id = props.length + 1
     props.addBiz(payload)
     setState({
         Name: '',
@@ -40,7 +39,6 @@ const handleSubmit = (e) => {
         Address: '',
     })
 }
-console.log(props)
 
   return (
     <Container  

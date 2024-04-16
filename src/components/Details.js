@@ -1,20 +1,20 @@
 import React from 'react'
-import { Container, Paper, Chip } from '@mui/material';
+import { Container } from '@mui/material';
+import { useParams } from 'react-router-dom';
+
 
 const Biz = (props) => {
-    const id = props.match.params.id
+    const {id} = useParams()
+    console.log(props)
     const biz = props.businesses.find(b => b.id == id)
+    console.log(biz)
 
     return (
         <Container maxWidth="sm" className="biz-container">
-            <Paper className="biz-paper">
-                <h2>{biz.name}</h2>
-                {
-                    Object.keys(biz).map((key, idx) => {
-                        return <Chip label={`${key}: ${biz[key]}`}></Chip>
-                    })
-                }
-            </Paper>
+                <h1>{biz.Name}</h1>
+                <h2>{biz.Address}</h2>
+                <h2>{biz.Hours}</h2>
+                <p>{biz.Description}</p>
         </Container>
     )
 };

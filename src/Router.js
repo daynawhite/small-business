@@ -1,11 +1,11 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router';
+import { Routes, Route } from 'react-router';
+import { Navigate } from 'react-router-dom';
 import cookie from 'cookie';
-// import { Listings, AdminView, LoginPage, Details, AddBiz } from './components';
-import Listings from './components/Listings';
+import Listings from './containers/Listings';
 import LoginPage from './components/LoginPage';
-import Details from './components/Details';
-import AddBiz from './components/AddBiz';
+import Details from './containers/Details';
+import AddBiz from './containers/AddBiz';
 
 const checkAuth = () => {
     const cookies = cookie.parse(document.cookie);
